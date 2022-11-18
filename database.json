@@ -1,0 +1,44 @@
+{
+    "children": [
+        {
+            "date_added": "13305932565468969",
+            "guid": "cf1ace8b-77c4-4a0e-b2f1-c2773d2ae359",
+            "id": "1025",
+            "name": "Where does Google Chrome store bookmarks on Ubuntu? - Super User ; paragraph 1 ; paragraph 2 ; paragraph 3",
+            "type": "url",
+            "url": "https://superuser.com/questions/158440/where-does-google-chrome-store-bookmarks-on-ubuntu"
+        },
+        {
+            "date_added": "13305940146823268",
+            "guid": "ae5ca431-cdbc-4426-8d58-7c19b4b1d2c9",
+            "id": "1026",
+            "name": "Judge Orders Release of Redacted Trump Raid Affidavit by Friday ; These guys are commies ; I'll talk about this later on a video",
+            "type": "url",
+            "url": "https://www.thegatewaypundit.com/2022/08/doj-submits-redacted-trump-raid-affidavit-judge/"
+        },
+        {
+            "children": [
+                {
+                    "date_added": "13305940193112697",
+                    "guid": "2b27d47a-d069-4c43-89ce-b9f0f255e90c",
+                    "id": "1028",
+                    "name": "Coronavirus Disease 2019 (COVID-19) | CDC",
+                    "type": "url",
+                    "url": "https://www.cdc.gov/coronavirus/2019-ncov/index.html"
+                }
+            ],
+            "date_added": "13305940170773204",
+            "date_modified": "13305940604114371",
+            "guid": "887773db-a8cc-4c57-9536-45b34548ae65",
+            "id": "1027",
+            "name": "Covid",
+            "type": "folder"
+        }
+    ],
+    "date_added": "13305932530026984",
+    "date_modified": "13305940170773854",
+    "guid": "59fc94d5-7470-4577-8a69-58dc1b184711",
+    "id": "1024",
+    "name": "info-site",
+    "type": "folder"
+}
