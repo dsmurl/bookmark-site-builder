@@ -1,0 +1,7 @@
+
+server/public
+.idea
+node_modules
+*.env
+*.db
+*.log

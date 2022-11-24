@@ -1,0 +1,107 @@
+import Express from "express";
+import http from "http";
+import { Prisma, Article, PrismaClient } from "@prisma/client";
+import { makeSuccessResponse, makeFailResponse } from "./util/response";
+
+const prisma = new PrismaClient();
+
+const app = Express();
+const port = 4000;
+
+app.get("/", async (req: Express.Request, res: Express.Response) => {
+  res.send(
+    "<body>" +
+      "Calls:<br/>" +
+      '<a href="/getArticles">/getArticles</a><br/>' +
+      '<a href="/createArticle?url=www.google.com&title=Tittok%20is%20Bad">/createArticle?url=www.google.com&title=Tittok is Bad</a><br/>' +
+      '<a href="/deleteArticle?id=3">/deleteArticle?id=3</a><br/>' +
+      "</body>"
+  );
+});
+
+app.get("/getArticles", async (req: Express.Request, res: Express.Response) => {
+  const response = await prisma.article.findMany();
+
+  res.send(
+    makeSuccessResponse(response, ["These are the articles.", "Enjoy!"])
+  );
+});
+
+app.get(
+  "/createArticle",
+  async (req: Express.Request, res: Express.Response) => {
+    const url = req.query.url as string;
+    const title = req.query.title as string;
+
+    if (url && title) {
+      const response = await prisma.article.create({
+        data: {
+          url,
+          title,
+          createDate: new Date(),
+          lastUpdate: new Date(),
+        },
+      });
+
+      console.log("   response: ", response);
+
+      res.send(makeSuccessResponse(response, ["Created this article."]));
+    } else {
+      res.send(makeFailResponse(["Could not make article."]));
+    }
+  }
+);
+
+app.get(
+  "/deleteArticle",
+  async (req: Express.Request, res: Express.Response) => {
+    try {
+      const id = parseInt(req.query.id as string);
+
+      if (!id && id !== 0) {
+        throw new Error("Validation error: missing id.");
+      }
+
+      const response = await prisma.article.delete({
+        where: {
+          id: id,
+        },
+      });
+
+      console.log("   response: ", response);
+
+      res.send(makeSuccessResponse(response, ["Deleted this article."]));
+    } catch (e: any) {
+      res.send(
+        makeFailResponse([
+          `Could not delete article(${req.query.id}).`,
+          e.toString(),
+        ])
+      );
+    }
+  }
+);
+
+// app.get("/removeCar", function (req, res) {
+//   const id = req.query.id;
+
+//   console.log("       removing id: ", id);
+
+//   if (id) {
+//     db.cars.removeCar(parseInt(id), (car) => {
+//       res.send(
+//         car
+//           ? response.makeSuccessResponse(car, ["Removed a car"])
+//           : response.makeFailResponse(["Could not remove car"])
+//       );
+//     });
+//   } else {
+//     response.makeFailResponse(["Could not remove car"]);
+//   }
+// });
+
+app.listen(port, function () {
+  console.log(`Example app listening on port ${port}!`);
+});
+
+// db.close();
