@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Content } from "./Articles.styled";
+import { Content, AddArticleArea } from "./Articles.styled";
 import { BaseLayout } from "../../components/Layouts/BaseLayout/BaseLayout";
 import { Loading } from "../../components/Loading/Loading";
 import { Prisma, prisma } from "../../util/prisma-connection";
@@ -23,7 +23,9 @@ export const Articles: React.FC = () => {
   return (
     <Content>
       <BaseLayout title="Articles">
-        <AddArticlePanel />
+        <AddArticleArea>
+          <AddArticlePanel />
+        </AddArticleArea>
         {isLoading && <Loading />}
         {articles ? (
           articles.map((article) => (

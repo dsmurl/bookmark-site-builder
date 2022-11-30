@@ -1,5 +1,4 @@
-
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Content = styled.div`
   display: flex;
@@ -9,6 +8,7 @@ export const Content = styled.div`
 
 export const BodySection = styled.div`
   flex-grow: 1;
+  padding: 20px;
 `;
 
 // export const Link = styled(MUILink)`
