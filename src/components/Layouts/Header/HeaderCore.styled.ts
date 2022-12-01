@@ -5,11 +5,12 @@ export const Container = styled.div`
   color: white;
   font-size: 26px;
 
-  ${({ sticky }) =>
+  ${({ sticky }: { sticky?: boolean }) =>
     sticky &&
     css`
       position: fixed;
       top: 0;
+      z-index: 10;
     `};
 `;
 
@@ -33,7 +34,7 @@ export const ListElement = styled.li`
   float: left;
   height: 64px;
 
-  ${({ last }) =>
+  ${({ last }: { last?: boolean }) =>
     last &&
     css`
       float: right;

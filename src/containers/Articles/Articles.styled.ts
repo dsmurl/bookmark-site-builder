@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const Content = styled.div`
-  background-color: skyblue;
-`;
+export const Content = styled.div``;
 
 export const AddArticleArea = styled.div`
   width: 500px;

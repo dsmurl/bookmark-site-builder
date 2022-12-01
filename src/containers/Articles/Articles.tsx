@@ -5,20 +5,10 @@ import { BaseLayout } from "../../components/Layouts/BaseLayout/BaseLayout";
 import { Loading } from "../../components/Loading/Loading";
 import { Prisma, prisma } from "../../util/prisma-connection";
 import { AddArticlePanel } from "../../components/AddArticlePanel/AddArticlePanel";
+import { useArticles } from "../../hooks/useArticles";
 
 export const Articles: React.FC = () => {
-  const [articles, setArticles] = useState<Prisma.Article[] | null>(null);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("/api/getArticles")
-      .then((res) => res.json())
-      .then((articles) => {
-        setArticles(articles);
-        setLoading(false);
-      });
-  }, []);
+  const { articles, isLoading } = useArticles();
 
   return (
     <Content>
