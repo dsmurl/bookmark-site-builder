@@ -5,7 +5,7 @@ import { BaseLayout } from "../../components/Layouts/BaseLayout/BaseLayout";
 export const Home = () => (
   <Content>
     <BaseLayout title="Home">
-      <div>Home</div>
+      <h3>Home</h3>
     </BaseLayout>
   </Content>
 );

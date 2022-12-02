@@ -9,10 +9,8 @@ type ArticlePanelProps = {
 export const ArticlePanel: React.FC<ArticlePanelProps> = ({ article }) => {
   return (
     <Content>
-      <h1>{article.title}</h1>
-      <p>
-        {article.id}: {article.url}
-      </p>
+      <h4>{article.title}</h4>
+      {article.id}: {article.url}
     </Content>
   );
 };

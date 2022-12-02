@@ -17,6 +17,7 @@ export const Articles: React.FC = () => {
   return (
     <Content>
       <BaseLayout title="Articles">
+        <h3>Articles</h3>
         {Modal}
         <AddArticleArea>
           <Button variant="contained" onClick={() => open()}>

@@ -5,7 +5,7 @@ import { BaseLayout } from "../../components/Layouts/BaseLayout/BaseLayout";
 export const Contact = () => (
   <Content>
     <BaseLayout title="Contact">
-      <div>Contact</div>
+      <h3>Contact</h3>
     </BaseLayout>
   </Content>
 );

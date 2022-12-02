@@ -26,8 +26,8 @@ const navLinks: NavLink[] = [
     title: "Contact",
   },
   {
-    path: "/docs",
-    title: "Docs",
+    path: "/admin",
+    title: "Admin",
   },
 ];
 

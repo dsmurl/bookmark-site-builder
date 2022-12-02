@@ -1,12 +1,12 @@
 import React from "react";
-import { Content } from "./Docs.styled";
+import { Content } from "./Admin.styled";
 import { BaseLayout } from "../../components/Layouts/BaseLayout/BaseLayout";
 
-export const Docs: React.FC = () => {
+export const Admin: React.FC = () => {
   return (
     <Content>
-      <BaseLayout title="Articles">
-        <p>Simple Docs page</p>
+      <BaseLayout title="Admin">
+        <h3>Admin</h3>
       </BaseLayout>
     </Content>
   );
