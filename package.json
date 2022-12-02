@@ -13,6 +13,7 @@
   "author": "dsmurl",
   "license": "ISC",
   "dependencies": {
+    "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.16",
     "@prisma/client": "4.6.1",
     "next": "13.0.5",

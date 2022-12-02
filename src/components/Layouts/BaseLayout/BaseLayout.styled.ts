@@ -9,6 +9,7 @@ export const Content = styled.div`
 export const BodySection = styled.div`
   flex-grow: 1;
   padding: 20px;
+  padding-bottom: 64px;
 `;
 
 // export const Link = styled(MUILink)`

@@ -6,21 +6,24 @@ import {
   ActionArea,
 } from "./AddArticlePanel.styled";
 import { TextField, Button } from "../ui-kit";
-
 import { useArticles } from "../../hooks/useArticles";
-
 import { useAddArticleFormData } from "./useAddArticleFormData";
 
-export const AddArticlePanel: React.FC = () => {
-  const [formState, setFormState] = useAddArticleFormData();
+type AddArticlePanel = {
+  closeModal?: () => void;
+};
 
-  const { createArticle } = useArticles();
+export const AddArticlePanel: React.FC<AddArticlePanel> = ({ closeModal }) => {
+  const [formState, setFormState] = useAddArticleFormData();
+  const { createArticle, isLoading } = useArticles();
 
   const submitClicked = async () => {
     await createArticle({
       title: formState.title,
       url: formState.url,
     });
+
+    closeModal && closeModal();
   };
 
   return (
@@ -59,10 +62,10 @@ export const AddArticlePanel: React.FC = () => {
       <ActionArea>
         <Button
           variant="contained"
-          disabled={!formState.isReady}
+          disabled={!formState.isReady || isLoading}
           onClick={(e) => submitClicked()}
         >
-          Add
+          {isLoading ? "Saving" : "Add Article"}
         </Button>
       </ActionArea>
     </Content>

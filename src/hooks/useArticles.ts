@@ -2,6 +2,10 @@ import { useState, useCallback, useEffect } from "react";
 import { singletonHook } from "react-singleton-hook";
 import { Article } from "../types/Article";
 
+function wait(milliseconds: number) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
 const init = {
   articles: [],
   getArticles: () => {
@@ -38,6 +42,7 @@ const useArticlesImpl = () => {
 
   const createArticle = useCallback(
     async ({ title, url }: { title: string; url: string }) => {
+      setLoading(true);
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
@@ -52,18 +57,19 @@ const useArticlesImpl = () => {
         body: raw,
       };
 
-      const newArticle: Article = await fetch("api/articles", requestOptions)
-        .then((response) => response.json())
-        .then((newArticleResponse) => {
-          const newArticle: Article = newArticleResponse.data;
+      const newArticleResponse = await fetch(
+        "api/articles",
+        requestOptions
+      ).then((response) => response.json());
+      const newArticle: Article = newArticleResponse.data;
 
-          setArticles([...articles, newArticle]);
-          return newArticle;
-        });
+      await wait(3000);
 
+      setLoading(false);
+      setArticles([...articles, newArticle]);
       return newArticle;
     },
-    [articles, setArticles]
+    [articles, setArticles, setLoading]
   );
 
   return { articles, getArticles, createArticle, isLoading };
