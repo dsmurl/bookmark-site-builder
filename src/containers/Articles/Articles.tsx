@@ -6,6 +6,8 @@ import { AddArticlePanel } from "../../components/AddArticlePanel/AddArticlePane
 import { useArticles } from "../../hooks/useArticles";
 import { Button, useDialog } from "../../components/ui-kit";
 import { ArticlePanel } from "../../components/ArticlePanel/ArticlePanel";
+import { FolderPanel } from "../../components/FolderPanel/FolderPanel";
+import { Folder } from "../../types/Folder";
 
 export const Articles: React.FC = () => {
   const { articles, isLoading } = useArticles();
@@ -13,6 +15,16 @@ export const Articles: React.FC = () => {
     children: <AddArticlePanel />,
     showCloseButton: true,
   });
+
+  const currentDate = new Date();
+
+  const sampleFolder: Folder = {
+    id: 3,
+    title: "Gardening Stuff",
+    description: "This is all I know about gardening",
+    createDate: currentDate,
+    lastUpdate: currentDate,
+  };
 
   return (
     <Content>
@@ -34,6 +46,9 @@ export const Articles: React.FC = () => {
         ) : (
           <p>No article data</p>
         )}
+        <ArticleRow>
+          <FolderPanel folder={sampleFolder} />
+        </ArticleRow>
       </BaseLayout>
     </Content>
   );

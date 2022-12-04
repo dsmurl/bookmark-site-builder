@@ -17,7 +17,7 @@
     "@mui/material": "^5.10.16",
     "@prisma/client": "4.6.1",
     "next": "13.0.5",
-    "nightmare": "3.0.2",
+    "nightmare": "^3.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-singleton-hook": "^4.0.1",
@@ -25,6 +25,7 @@
     "styled-components": "5.3.6"
   },
   "devDependencies": {
+    "@types/nightmare": "^2.10.6",
     "@types/react": "18.0.25",
     "@types/sqlite3": "3.1.8",
     "@types/styled-components": "^5.1.26",

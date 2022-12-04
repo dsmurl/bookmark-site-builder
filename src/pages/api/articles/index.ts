@@ -1,11 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Prisma, prisma } from "../../util/prisma-connection";
-import { Article } from "../../types/Article";
+import { Prisma, prisma } from "../../../util/prisma-connection";
 
-const getArticlesHandler = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-) => {
+const articlesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const body = req.body;
@@ -40,4 +36,4 @@ export const config = {
   },
 };
 
-export default getArticlesHandler;
+export default articlesHandler;

@@ -1,7 +1,6 @@
-export interface Article {
+export interface Folder {
   id: number;
   title: string;
-  url: string;
   description: string;
   createDate: Date | string;
   lastUpdate: Date | string;
