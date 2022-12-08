@@ -2,19 +2,17 @@ import React from "react";
 import { Content, AddArticleArea, ArticleRow } from "./Articles.styled";
 import { BaseLayout } from "../../components/Layouts/BaseLayout/BaseLayout";
 import { Loading } from "../../components/Loading/Loading";
-import { ChangeSiteMarkPanel } from "../../components/ChangeSiteMarkPanel/ChangeSiteMarkPanel";
-import { useSiteMark } from "../../hooks/useSiteMark";
+import { AddArticlePanel } from "../../components/AddArticlePanel/AddArticlePanel";
+import { useArticles } from "../../hooks/useArticles";
 import { Button, useDialog } from "../../components/ui-kit";
 import { ArticlePanel } from "../../components/ArticlePanel/ArticlePanel";
 import { FolderPanel } from "../../components/FolderPanel/FolderPanel";
 import { Folder } from "../../types/Folder";
-import { BookmarkItemType } from "../../types/BookmarkItemType";
 
 export const Articles: React.FC = () => {
-  const { siteData, targetSiteMark, isLoading } =
-    useSiteMark();
+  const { articles, isLoading } = useArticles();
   const { Modal, open } = useDialog({
-    children: <ChangeSiteMarkPanel />,
+    children: <AddArticlePanel />,
     showCloseButton: true,
   });
 
@@ -35,18 +33,22 @@ export const Articles: React.FC = () => {
         {Modal}
         <AddArticleArea>
           <Button variant="contained" onClick={() => open()}>
-            Change
+            Add
           </Button>
         </AddArticleArea>
-        {isLoading && <Loading />}
-        {targetSiteMark !== "" ? (
-          <pre>{JSON.stringify(siteData, null, 4)}</pre>
+        {isLoading && articles.length === 0 && <Loading />}
+        {articles ? (
+          articles.map((article) => (
+            <ArticleRow key={article.id}>
+              <ArticlePanel article={article} />
+            </ArticleRow>
+          ))
         ) : (
           <p>No article data</p>
         )}
-        {/* <ArticleRow>
+        <ArticleRow>
           <FolderPanel folder={sampleFolder} />
-        </ArticleRow> */}
+        </ArticleRow>
       </BaseLayout>
     </Content>
   );

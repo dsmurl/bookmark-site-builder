@@ -1,15 +1,6 @@
 import Nightmare from "nightmare";
+import { BookmarkItemType } from "../types/BookmarkItemType";
 const fs = require("fs").promises;
-
-type BookmarkItemType = {
-  date_added: string;
-  guid: string;
-  id: string;
-  name: string;
-  type: "url" | "folder";
-  url: string;
-  children: BookmarkItemType[];
-};
 
 const log = (text: string, level: number) => {
   let output = "";
@@ -63,11 +54,25 @@ const processBookmark = (bookmark: BookmarkItemType, level: number) => {
   rest.forEach((paragraph) => log(paragraph, level + 1));
 };
 
+const getBookmarksFile = async () => {
+  try {
+    const data = await fs.readFile(
+      "/home/dsmurl/.config/BraveSoftware/Brave-Browser/Default/Bookmarks",
+      "utf8"
+    );
+
+    return data;
+  } catch (e) {
+    const data = await fs.readFile(
+      "/Users/dsmurl/Library/Application Support/BraveSoftware/Brave-Browser/Default/Bookmarks",
+      "utf8"
+    );
+    return data;
+  }
+};
+
 export const parseSiteMark = async (siteMark: string) => {
-  const data = await fs.readFile(
-    "/home/dsmurl/.config/BraveSoftware/Brave-Browser/Default/Bookmarks",
-    "utf8"
-  );
+  const data = await getBookmarksFile();
 
   const braveBookmarks = JSON.parse(data);
 
